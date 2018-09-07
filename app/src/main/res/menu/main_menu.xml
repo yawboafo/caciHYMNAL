@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+
+
+    <item android:id="@+id/favorites"
+        android:iconTint="@color/WhiteSmoke"
+        android:icon="@drawable/ic_bookmark"
+
+        android:title="Favorites"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/refresh"
+        android:iconTint="@android:color/white"
+        android:icon="@drawable/ic_refresh"
+        android:title="Night mode"
+        app:showAsAction="always" />
+
+
+
+    <item
+        android:id="@+id/empty"
+        android:title="More"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_more">
+
+        <menu>
+            <item android:id="@+id/settings"
+                android:icon="@drawable/ic_settings_black_24dp"
+                app:showAsAction="ifRoom"
+                android:title="Settings" />
+
+
+
+        </menu>
+
+    </item>
+
+
+
+</menu>
