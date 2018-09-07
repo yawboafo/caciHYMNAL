@@ -4,9 +4,11 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,12 +41,14 @@ public class FavHymnAdapter extends RecyclerView.Adapter<FavHymnAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, price,time,id;
         public CircleImageView thumbnail;
+        public ImageButton imageButton;
 
         public MyViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.hymnTitle);
             id = view.findViewById(R.id.hymnid);
             thumbnail= view.findViewById(R.id.imageView);
+            imageButton = view.findViewById(R.id.deleteButton);
         }
     }
 
@@ -62,7 +66,7 @@ public class FavHymnAdapter extends RecyclerView.Adapter<FavHymnAdapter.MyViewHo
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = null;
 
-        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.hymn_item, parent, false);
+        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fav_hymn_item, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -71,9 +75,11 @@ public class FavHymnAdapter extends RecyclerView.Adapter<FavHymnAdapter.MyViewHo
 
         final FavoriteHymn product = productListFiltered.get(position);
 
+        Log.d("PrepareDelete ", "favorite found : "+product.getTitle());
+
         new DeleFavHymnsAsync(product).execute();
         productListFiltered.remove(position);
-
+        MemoryData.setActiveFavHymnList(productListFiltered);
     }
 
 
@@ -176,12 +182,12 @@ public class FavHymnAdapter extends RecyclerView.Adapter<FavHymnAdapter.MyViewHo
 
             FavoriteHymn product1 = db.getFavoriteHymnDao().findFavoriteHymnByIDNow(this.hymnsList.getId());
 
-            if (product1 == null)
-                db.getFavoriteHymnDao().delete(this.hymnsList);
+            Log.d("Delete Layer", "Delete title in do background : " +product1.getTitle());
 
-           // productList.remove()
+            if (product1 != null)
+              db.getFavoriteHymnDao().delete(product1);
 
-            MemoryData.setActiveFavHymnList(productListFiltered);
+
 
 
             // db.getFavoriteHymnDao().update( this.hymnsList);

@@ -2,10 +2,12 @@ package com.truelight.cacihymn.Activities;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +34,8 @@ import com.truelight.cacihymn.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FavoritesActivity extends AppCompatActivity {
 
@@ -80,21 +85,87 @@ public class FavoritesActivity extends AppCompatActivity {
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(FavoritesActivity.this, recyclerView, new ClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void onClick(View view, final int position) {
+
+
+                ImageButton imageButton = (ImageButton) view.findViewById(R.id.deleteButton);
+
+                imageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        new AlertDialog.Builder(FavoritesActivity.this)
+                                .setTitle("Confirm Action")
+                                .setMessage("Do you really want to remove DWOM from favorites ?")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+
+
+                                        mAdapter.removeFavorites(position);
+
+
+
+                                        new getAllProductAsync().execute();
+
+
+                                        Toast.makeText(FavoritesActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+
+
+
+                                    }})
+
+
+                                .setNegativeButton(android.R.string.no, null).show();
+
+                    }
+                });
+
+
 
                 searchView.clearFocus();
                 String value,transType;
-                TextView id=(TextView)view.findViewById(R.id.hymnid);
 
 
-                if (!id.getText().toString().isEmpty())
-                    new getProductAsync(id.getText().toString()).execute();
+
+                final TextView id=(TextView)view.findViewById(R.id.hymnid);
+
+
+
+                TextView  titleView = (TextView)view.findViewById(R.id.hymnTitle);
+                titleView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if (!id.getText().toString().isEmpty())
+                            new getProductAsync(id.getText().toString()).execute();
+
+                    }
+                });
+
+
+                CircleImageView imageView = (CircleImageView)view.findViewById(R.id.imageView);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!id.getText().toString().isEmpty())
+                            new getProductAsync(id.getText().toString()).execute();
+                    }
+                });
+
+
+
+
                //  startActivity(new Intent(FavoritesActivity.this, DetailsActivity.class));
 
             }
 
             @Override
             public void onLongClick(View view, int position) {
+
+
+
+
 
             }
         }));
