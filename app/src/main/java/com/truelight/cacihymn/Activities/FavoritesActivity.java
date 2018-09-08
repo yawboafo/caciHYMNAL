@@ -97,7 +97,8 @@ public class FavoritesActivity extends AppCompatActivity {
                         new AlertDialog.Builder(FavoritesActivity.this)
                                 .setTitle("Confirm Action")
                                 .setMessage("Do you really want to remove DWOM from favorites ?")
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
                                     public void onClick(DialogInterface dialog, int whichButton) {
 
@@ -116,7 +117,7 @@ public class FavoritesActivity extends AppCompatActivity {
                                     }})
 
 
-                                .setNegativeButton(android.R.string.no, null).show();
+                                .setNegativeButton("No", null).show();
 
                     }
                 });
