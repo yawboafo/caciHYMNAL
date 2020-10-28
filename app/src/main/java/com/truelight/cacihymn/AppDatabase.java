@@ -14,7 +14,6 @@ import com.truelight.cacihymn.ModelsDAO.HymnDao;
 
 @Database(entities = { Hymn.class,FavoriteHymn.class},
         version = 2)
-
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase db;
