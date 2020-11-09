@@ -280,9 +280,9 @@ public class MainActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         if (response == null) {
 
-                            simpleMessageDailog("Error","Failed to download hymns,make sure you have a strong internet connection and try again");
+                            simpleMessageDailog("Try Again","Poor internet connection, Please try again.");
 
-                            Toast.makeText(MainActivity.this, "Couldn't fetch the store items! Pleas try again.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Poor internet connection, Please try again.", Toast.LENGTH_LONG).show();
                             return;
                         }
 
@@ -308,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
 
                         progressDialog.dismiss();
-                        simpleMessageDailog("Error","Failed to download hymns,make sure you have a strong internet connection and try again");
+                        simpleMessageDailog("Try Again","Poor internet connection, Please try again.");
                         // error in getting json
                         Log.e("HYMMS", "Error: " + error.getMessage());
                       //  Toast.makeText(MainActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();

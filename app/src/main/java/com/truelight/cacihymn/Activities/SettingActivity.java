@@ -66,13 +66,15 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog alertDialog = new AlertDialog.Builder(SettingActivity.this).create();
-                alertDialog.setTitle("CACI-DWOM (Version 1.0) ");
+                alertDialog.setTitle("CACI-DWOM (Version 1.5) ");
                 alertDialog.setMessage(
                         "This app was created for Christ Apostolic Church International.\n\n" +
                         "SPECIAL THANKS TO \n\n" +
-                                "Godwill Ohene Siaw (Taifa - Branch).\n" +
-                                "Cyril Atta Adjei Panin (Taifa - Branch).\n" +
-                                "Yaw Koranteng Boafo (Ashongman - Branch).\n\nCopyright (2018)");
+                                "Godwill Ohene Siaw (C.A.C.I, Taifa - Branch).\n\n" +
+                                "Cyril Atta Adjei Panin (C.A.C.I,Taifa - Branch).\n\n" +
+                                "Yaw Koranteng Boafo (C.A.C.I)\n\n" +
+                                "Mr Benjamin Anum Atteh (National Music Officer ).\n" +
+                                "\nCopyright (2020)");
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
