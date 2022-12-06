@@ -42,24 +42,14 @@ public class DetailsActivity extends AppCompatActivity {
 
 
         if (MemoryData.getFontSize(DetailsActivity.this) != null ){
-
             fontsize = MemoryData.getFontSize(DetailsActivity.this);
-
             justifiedTextView.setTextSize(Float.parseFloat(fontsize +""));
-
-
             Log.d("This class name ", "font size" + fontsize);
         }
 
         justifiedTextView.setText(body);
-
         Log.d("Check value  ",MemoryData.getIsNightMode(DetailsActivity.this)+"");
-
         changeTheme(MemoryData.getIsNightMode(DetailsActivity.this));
-
-
-
-
         Log.d("Check value ",MemoryData.getIsNightMode(DetailsActivity.this)+"");
     }
 
@@ -73,12 +63,10 @@ public class DetailsActivity extends AppCompatActivity {
 
     void saveHymn(){
        // AppDatabase db = AppDatabase.getAppDatabase(DetailsActivity.this);
-
         FavoriteHymn favoriteHymn = new FavoriteHymn();
         favoriteHymn.setBody(MemoryData.getActiveHymn().getBody());
         favoriteHymn.setTitle(MemoryData.getActiveHymn().getTitle());
         favoriteHymn.setId(MemoryData.getActiveHymn().getId());
-
         new InsertHymnsAsync(favoriteHymn).execute();
     }
 
@@ -86,14 +74,9 @@ public class DetailsActivity extends AppCompatActivity {
     {
 
         FavoriteHymn hymnsList;
-
         InsertHymnsAsync(FavoriteHymn hymnsList){
-
             this.hymnsList = hymnsList;
-
         }
-
-
 
         protected void onPreExecute (){
             super.onPreExecute();
@@ -101,18 +84,12 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
         protected Void doInBackground(Void... unused) {
-
             AppDatabase db = AppDatabase.getAppDatabase(DetailsActivity.this);
-
-
             FavoriteHymn product1 = db.getFavoriteHymnDao().findFavoriteHymnByIDNow(this.hymnsList.getId());
-
             if (product1 == null)
                 db.getFavoriteHymnDao().insert(this.hymnsList);
             else
                 db.getFavoriteHymnDao().update(this.hymnsList);
-
-
            // db.getFavoriteHymnDao().update( this.hymnsList);
             return null;
         }
@@ -132,42 +109,20 @@ public class DetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-
                 onBackPressed();
-
-                //this.finish();
-                //Toast.makeText(getApplicationContext(),"Back button clicked", Toast.LENGTH_SHORT).show();
-
                  return  true;
-
-                //break;
-
             case  R.id.nitemode:
-
                 if (MemoryData.isIsNighMode()){
-
                     MemoryData.setIsNighMode(false);
                     changeTheme(MemoryData.isIsNighMode());
                 }else{
                     MemoryData.setIsNighMode(true);
                     changeTheme(MemoryData.isIsNighMode());
                 }
-
-
-
-
                 break;
-
-
             case  R.id.bookmark:
-
-
-
                 saveHymn();
                 Toast.makeText(DetailsActivity.this,"Dwom saved to favorites",Toast.LENGTH_SHORT).show();
-
-
-
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -178,12 +133,9 @@ public class DetailsActivity extends AppCompatActivity {
 
     @SuppressLint("LongLogTag")
     private void changeTheme(Boolean value){
-
         Log.d("Value is night mode ",value+"");
         Log.d("Value is night mode  raw",MemoryData.getIsNightMode(DetailsActivity.this)+"");
-
         if(value){
-
             mainscreen.setBackgroundColor( getResources().getColor(android.R.color.black) );
             justifiedTextView.setBackgroundColor( getResources().getColor(android.R.color.black)  );
             justifiedTextView.setTextColor( getResources().getColor(android.R.color.white));

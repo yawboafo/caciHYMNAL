@@ -4,10 +4,14 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4bbc57d77c2218cf78ab8ecdeaa1334d/com.amulyakhare.textdrawable-1.0.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4bbc57d77c2218cf78ab8ecdeaa1334d/com.amulyakhare.textdrawable-1.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4bbc57d77c2218cf78ab8ecdeaa1334d/com.amulyakhare.textdrawable-1.0.1/res" />
+      <root url="file:///private/var/root/.gradle/caches/transforms-2/files-2.1/4bbc57d77c2218cf78ab8ecdeaa1334d/com.amulyakhare.textdrawable-1.0.1/AndroidManifest.xml" />
+      <root url="file:///private/var/root/.gradle/caches/transforms-2/files-2.1/4bbc57d77c2218cf78ab8ecdeaa1334d/com.amulyakhare.textdrawable-1.0.1/res" />
+      <root url="jar:///private/var/root/.gradle/caches/transforms-2/files-2.1/4bbc57d77c2218cf78ab8ecdeaa1334d/com.amulyakhare.textdrawable-1.0.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amulyakhare/com.amulyakhare.textdrawable/1.0.1/464f77c149aad9f5dbb3aaf846cd52d57b61df4b/com.amulyakhare.textdrawable-1.0.1-sources.jar!/" />
+      <root url="jar:///private/var/root/.gradle/caches/modules-2/files-2.1/com.amulyakhare/com.amulyakhare.textdrawable/1.0.1/464f77c149aad9f5dbb3aaf846cd52d57b61df4b/com.amulyakhare.textdrawable-1.0.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
