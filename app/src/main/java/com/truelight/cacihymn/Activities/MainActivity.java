@@ -47,6 +47,8 @@ import com.truelight.cacihymn.R;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -266,7 +268,34 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();
 
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, APIRequest.getAllhymns,null,
+        String json = null;
+        try {
+            InputStream is = getAssets().open("hymns.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+            Hymresponse hymresponse = new Gson().fromJson(json, new TypeToken<Hymresponse>() {
+            }.getType());
+
+            itemsList.clear();
+            itemsList.addAll(hymresponse.getData());
+            new InsertHymnsAsync(hymresponse.getData()).execute();
+            Log.d("TAG", "itemsList.count: " + itemsList.size()  +" "+ hymresponse.getData().get(0).getBody());
+            progressDialog.dismiss();
+            mAdapter.notifyDataSetChanged();
+        } catch (IOException e) {
+
+            progressDialog.dismiss();
+            // error in getting json
+            Log.e("HYMMS", "Error: " + "Failed to Fetch Hymns");
+            Toast.makeText(MainActivity.this, "Error: Failed to fetch hymmns " , Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+
+
+    /*    JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, APIRequest.getAllhymns,null,
                 new Response.Listener<JSONObject>()
                 {
 
@@ -314,7 +343,10 @@ public class MainActivity extends AppCompatActivity {
                       //  Toast.makeText(MainActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-        );
+        );     apiRequest.addToRequestQueue(request);
+
+
+        **/
 
 
 
@@ -322,14 +354,36 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-        apiRequest.addToRequestQueue(request);
     }
     private void fetchHymnSilent() {
+        swipeRefreshLayout.setRefreshing(false);
+        String json = null;
+        try {
+            InputStream is = getAssets().open("hymns.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+            Hymresponse hymresponse = new Gson().fromJson(json, new TypeToken<Hymresponse>() {
+            }.getType());
 
+            itemsList.clear();
+            itemsList.addAll(hymresponse.getData());
+            new InsertHymnsAsync(hymresponse.getData()).execute();
+            Log.d("TAG", "itemsList.count: " + itemsList.size()  +" "+ hymresponse.getData().get(0).getBody());
 
+            mAdapter.notifyDataSetChanged();
+        } catch (IOException e) {
+            swipeRefreshLayout.setRefreshing(false);
 
+            // error in getting json
+            Log.e("HYMMS", "Error: " + "Failed to Fetch Hymns");
+            Toast.makeText(MainActivity.this, "Error: Failed to fetch hymmns " , Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
 
+/*
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, APIRequest.getAllhymns,null,
                 new Response.Listener<JSONObject>()
                 {
@@ -374,6 +428,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Error: Failed to fetch hymmns " , Toast.LENGTH_SHORT).show();
                     }
                 }
+                apiRequest.addToRequestQueue(request);
         );
 
 
@@ -383,7 +438,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        apiRequest.addToRequestQueue(request);
+
+        **/
     }
 
     class getAllProductAsync extends AsyncTask<Void, Void, Void>
