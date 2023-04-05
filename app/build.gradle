@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
     defaultConfig {
-        applicationId "com.truelight.cacihymn"
+        applicationId "com.truelight.cacidwom"
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 3
+        targetSdkVersion 33
+        versionCode 4
         versionName "1.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

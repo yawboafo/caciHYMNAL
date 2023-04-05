@@ -13,7 +13,13 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.1'
 
-
+        /**
+         * keyStorePath : /Users/nykb/Developer/AndroidStudioProjects/caciHYMNAL/KeyStore
+         KeyStore file Name : KeyStore
+         Key alias : caciHymn
+         Key Store password : s0ccer
+         Key password : S0ccer
+         * */
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
